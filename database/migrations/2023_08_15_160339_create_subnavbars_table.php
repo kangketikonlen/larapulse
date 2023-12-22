@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('navbar_id');
             $table->string('name');
             $table->string('url');
-            $table->string('roles')->default(1);
             $table->string('createdBy')->default('System');
             $table->timestamp('createdAt')->default(now());
             $table->string('updatedBy')->nullable(true)->default(null);

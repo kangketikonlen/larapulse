@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'role_id' => 1,
             'name' => "Support Sistem",
             'username' => "support",
-            'password' => bcrypt('Kangketik@2023')
+            'password' => bcrypt('Fathtech@2023')
         ]);
     }
 }

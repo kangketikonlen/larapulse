@@ -15,14 +15,12 @@ class ReportSubnavbarSeeder extends Seeder
         Subnavbar::create([
             'navbar_id' => '4',
             'name' => 'Riwayat Error',
-            'url' => '/report/crash-log',
-            'roles' => 'general'
+            'url' => '/report/crash-log'
         ]);
         Subnavbar::create([
             'navbar_id' => '4',
             'name' => 'Riwayat Aktivitas',
-            'url' => '/report/activity-log',
-            'roles' => 'general'
+            'url' => '/report/activity-log'
         ]);
     }
 }

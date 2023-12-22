@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('icon');
             $table->string('url');
-            $table->string('roles')->default(1);
             $table->enum('type', ['single', 'dropdown'])->default('single');
             $table->string('createdBy')->default('System');
             $table->timestamp('createdAt')->default(now());

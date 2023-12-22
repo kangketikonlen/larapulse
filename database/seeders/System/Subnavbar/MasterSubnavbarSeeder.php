@@ -15,8 +15,7 @@ class MasterSubnavbarSeeder extends Seeder
         Subnavbar::create([
             'navbar_id' => '1',
             'name' => 'Pengguna',
-            'url' => '/master/user',
-            'roles' => 'general'
+            'url' => '/master/user'
         ]);
     }
 }

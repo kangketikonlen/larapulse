@@ -3,9 +3,7 @@
 namespace Database\Seeders\System;
 
 use App\Models\System\Module;
-use Database\Seeders\System\Module\SupportModuleSeeder;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ModuleSeeder extends Seeder
 {
@@ -14,12 +12,13 @@ class ModuleSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-
-        Module::truncate();
-
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-
-        $this->call(SupportModuleSeeder::class);
+        Module::create([
+            'icon' => 'fa-wrench',
+            'code' => 'general',
+            'description' => 'General Setting',
+            'url' => '/dashboard/general',
+            'navbars' => '1,2,3,4',
+            'subnavbars' => '1,2,3,4,5,6'
+        ]);
     }
 }

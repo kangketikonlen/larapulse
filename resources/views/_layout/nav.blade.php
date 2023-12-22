@@ -51,7 +51,7 @@
                 </a>
             </li>
             @foreach ($navbars as $navbar)
-                @if (in_array(strtolower(session('role_name')), explode(',', $navbar->roles)))
+                @if (in_array($navbar->id, explode(',', session('role_navbars'))))
                     @if ($navbar->type == 'single')
                         <li>
                             <a href="{{ $navbar->url }}">
@@ -67,7 +67,7 @@
                             </a>
                             <ul id="{{ $navbar->name }}">
                                 @foreach ($navbar->subnavbars as $subnavbar)
-                                    @if (in_array(strtolower(session('role_name')), explode(',', $subnavbar->roles)))
+                                    @if (in_array($subnavbar->id, explode(',', session('role_subnavbars'))))
                                         <li>
                                             <a href="{{ $subnavbar->url }}">
                                                 <span class="label">{{ $subnavbar->name }}</span>

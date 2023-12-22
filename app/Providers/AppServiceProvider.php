@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
             $appInfo = AppInfo::first();
             $institution = Institution::first();
             $modules = Module::get();
+            //
             $view->with('navbars', $navbars);
             $view->with('appInfo', $appInfo);
             $view->with('institution', $institution);

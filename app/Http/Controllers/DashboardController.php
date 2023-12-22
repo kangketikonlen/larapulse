@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\System\Module;
 use App\Models\System\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,18 +26,15 @@ class DashboardController extends Controller
         return view('pages.dashboard.general');
     }
 
-    public function switch_role(Request $request): RedirectResponse
+    public function switch(Module $module): RedirectResponse
     {
-        $newRole = $request->get('role');
-        $roles = Role::where('name', $newRole)->first();
-
-        if (!empty($roles)) {
+        if (!empty($module)) {
             $session = array(
-                'role_id' => $roles->id,
-                'role_name' => $roles->name,
-                'role_description' => $roles->description,
-                'role_url' => $roles->dashboard_url,
-                'role_page' => $roles->is_landing
+                'role_module_id' => $module->id,
+                'role_navbars' => $module->navbars,
+                'role_subnavbars' => $module->subnavbars,
+                'role_url' => $module->url,
+                'role_page' => 0
             );
             Session::put($session);
             return redirect($session['role_url'])->with('alert', ['status', 'success', 'message' => "Session changed!"]);

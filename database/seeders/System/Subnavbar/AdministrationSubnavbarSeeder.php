@@ -15,8 +15,7 @@ class AdministrationSubnavbarSeeder extends Seeder
         Subnavbar::create([
             'navbar_id' => '3',
             'name' => 'Maintenance Mode',
-            'url' => '/administration/maintenance',
-            'roles' => 'general'
+            'url' => '/administration/maintenance'
         ]);
     }
 }

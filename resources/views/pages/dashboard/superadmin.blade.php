@@ -25,7 +25,7 @@
                         <ul class="nav justify-content-start row">
                             @foreach ($modules as $module)
                                 <li class="nav-item col-2">
-                                    <a class="nav-link d-flex flex-column align-items-center" href="{{ $module->url }}">
+                                    <a class="nav-link d-flex flex-column align-items-center" href="/dashboard/{{$module->id}}/switch">
                                         <span class="d-inline-block bg-primary rounded p-3">
                                             <i class="fa fa-2x {{ $module->icon }} order-1 text-white"></i>
                                         </span>

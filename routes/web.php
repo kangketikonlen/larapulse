@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Master\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Setting\InstitutionController;
+use App\Http\Controllers\Setting\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware('auth:web')->grou
     Route::get('/administrator', [DashboardController::class, 'administrator']);
     Route::get('/general', [DashboardController::class, 'general']);
     // ========================== //
-    Route::get('/switch-role', [DashboardController::class, 'switch_role']);
+    Route::get('/{module}/switch', [DashboardController::class, 'switch']);
     Route::get('/reset-role', [DashboardController::class, 'reset_role']);
     Route::get('/logout', [PortalController::class, 'logout']);
 });
@@ -54,6 +55,12 @@ Route::namespace('Setting')->prefix('setting')->middleware('auth:web')->group(fu
     Route::prefix('institution')->middleware('auth:web')->group(function () {
         Route::get('/', [InstitutionController::class, 'index']);
         Route::put('/update', [InstitutionController::class, 'update']);
+    });
+    Route::prefix('module')->middleware('auth:web')->group(function () {
+        Route::get('/', [ModuleController::class, 'index']);
+        Route::get('/{module}/edit', [ModuleController::class, 'edit']);
+        Route::put('/{module}/update', [ModuleController::class, 'update']);
+        Route::get('/options', [ModuleController::class, 'options']);
     });
 });
 

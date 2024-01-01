@@ -19,7 +19,7 @@ jobs:
       - name: 📦 Create vendor archive
         run: zip -r vendor.zip vendor
       - name: 📦 Upload vendor folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: vendor
           path: vendor.zip

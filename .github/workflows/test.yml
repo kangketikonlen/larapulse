@@ -31,7 +31,7 @@ jobs:
       - name: 🐙 Git checkout
         uses: actions/checkout@v4
       - name: 📦 Download vendor folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: vendor
       - name: 📦 Extract vendor archive
@@ -55,7 +55,7 @@ jobs:
       - name: 🐙 Git checkout
         uses: actions/checkout@v4
       - name: 📦 Download vendor folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: vendor
       - name: 📦 Extract vendor archive

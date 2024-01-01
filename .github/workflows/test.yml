@@ -84,7 +84,7 @@ jobs:
       - name: 🐙 Git checkout
         uses: actions/checkout@v4
       - name: 📦 Delete vendor artifact
-        uses: geekyeggo/delete-artifact@v2
+        uses: geekyeggo/delete-artifact@v4
         with:
           name: vendor
   tagging:

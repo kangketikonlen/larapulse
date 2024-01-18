@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\DataTransferObject\UserDto;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Master\UserRequest;
+use App\Http\Resources\UserResource;
+use App\Library\MessageStatus;
 use App\Models\User;
+use App\Services\Master\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -11,11 +16,17 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     protected string $url = "/master/user";
+    protected UserService $service;
+
+    public function __construct(UserService $service,)
+    {
+        $this->service = $service;
+    }
 
     public function index(Request $request): View
     {
         $data['query'] = $request->input('query');
-        $data['users'] = User::where('role_id', 2)->paginate(10)->appends(request()->query());
+        $data['users'] = $this->service->list();
         return view('pages.master.user.index', $data);
     }
 
@@ -24,62 +35,29 @@ class UserController extends Controller
         return view('pages.master.user.create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(UserRequest $request): RedirectResponse
     {
-        $formFields = $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'password' => 'required'
-        ]);
-
-        $formFields['role_id'] = 2;
-        $formFields['password'] = bcrypt($formFields['password']);
-        User::create($formFields);
-
-        return redirect($this->url)->with('alert', ['message' => 'Data has been saved!', 'status' => 'success']);
-    }
-
-    public function edit(User $user): View
-    {
-        $data['user'] = $user;
-        return view('pages.master.user.edit', $data);
-    }
-
-    public function update(User $user, Request $request): RedirectResponse
-    {
-        $formFields = $request->validate([
-            'name' => 'required',
-            'username' => 'required'
-        ]);
-
-        $user->update($formFields);
-
-        return redirect($this->url)->with('alert', ['message' => 'Data has been updated!', 'status' => 'success']);
+        $this->service->store(UserDto::fromRequest($request));
+        return redirect($this->url)->with('alert', MessageStatus::saveSuccess());
     }
 
     public function reset_password(User $user): RedirectResponse
     {
-        $countData = User::count();
-        $serialCode = str_pad(strval($countData + 1), 4, "0", STR_PAD_LEFT);
-        $newPassword = "USR" . $serialCode . "P";
-
-        $hashedPassword['password'] = bcrypt($newPassword);
-        $user->update($hashedPassword);
-
-        return redirect($this->url)->with('alert', ['message' => 'Password has been reset, your new password is ' . $newPassword, 'status' => 'success']);
+        $newPassword = $this->service->generate_password();
+        $this->service->change_password($newPassword, $user);
+        return redirect($this->url)->with('alert', MessageStatus::resetPassSuccess($newPassword));
     }
 
     public function delete(User $user): RedirectResponse
     {
         $user->delete();
-
-        return redirect($this->url)->with('alert', ['message' => 'Data has been deleted!', 'status' => 'danger']);
+        return redirect($this->url)->with('alert', MessageStatus::deleteSuccess());
     }
 
-    public function options(Request $request): string|false
+    public function options(Request $request): UserResource
     {
         $query = $request->input('q');
-        $data = User::select('id', 'name as description')->where('name', 'like', '%' . $query . '%')->get();
-        return json_encode($data);
+        $data = $this->service->list_option($query);
+        return UserResource::make($data);
     }
 }

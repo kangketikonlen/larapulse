@@ -65,7 +65,6 @@
                                     <td class="align-middle">{{ $data->status }}</td>
                                     <td class="align-middle text-center text-nowrap">
                                         <x-buttons.reset :link="$url" :data="$data->id" />
-                                        <x-buttons.edit :link="$url" :data="$data->id" />
                                         <x-buttons.delete :link="$url" :data="$data->id" />
                                     </td>
                                 </tr>

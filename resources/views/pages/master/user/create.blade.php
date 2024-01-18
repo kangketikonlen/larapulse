@@ -52,17 +52,6 @@
                             <input class="form-control" autocomplete="off" name="username">
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="w-100">
-                            <label class="form-label" for="password">
-                                Password
-                                @error('password')
-                                    <span class="text-danger"><br />{{ $message }}</span>
-                                @enderror
-                            </label>
-                            <input type="password" class="form-control" autocomplete="off" name="password">
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="card-footer text-end pt-3 pb-3">

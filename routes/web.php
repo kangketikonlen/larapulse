@@ -42,8 +42,6 @@ Route::namespace('Master')->prefix('master')->middleware('auth:web')->group(func
         Route::get('/', [UserController::class, 'index']);
         Route::get('/create', [UserController::class, 'create']);
         Route::post('/store', [UserController::class, 'store']);
-        Route::get('/{user}/edit', [UserController::class, 'edit']);
-        Route::put('/{user}/update', [UserController::class, 'update']);
         Route::patch('/{user}/reset', [UserController::class, 'reset_password']);
         Route::delete('/{user}/delete', [UserController::class, 'delete']);
         Route::get('/options', [UserController::class, 'options']);

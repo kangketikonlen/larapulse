@@ -10,7 +10,7 @@ name: 📜 Test, pack & ship!
 jobs:
   tagging:
     name: 🏷️ Tagging the app
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: testing
     steps:
       - name: 🐙 Git checkout
@@ -28,7 +28,7 @@ jobs:
   build:
     needs: tagging
     name: 📦 Build the app
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       latest_version: ${{steps.push-image.outputs.version}}
     steps:

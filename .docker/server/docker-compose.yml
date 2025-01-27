@@ -12,10 +12,10 @@ services:
         env_file:
             - .env
         environment:
-            - "DB_HOST=${DOCKER_DATABASE_HOST}"
-            - "DB_DATABASE=${DOCKER_DATABASE_NAME}"
-            - "DB_USERNAME=${DOCKER_DATABASE_USERNAME}"
-            - "DB_PASSWORD=${DOCKER_DATABASE_PASSWORD}"
+            - "DB_HOST=${DB_HOST}"
+            - "DB_DATABASE=${DB_DATABASE}"
+            - "DB_USERNAME=${DB_USERNAME}"
+            - "DB_PASSWORD=${DB_PASSWORD}"
         depends_on:
             - database
         volumes:
@@ -33,11 +33,11 @@ services:
         env_file:
             - .env
         environment:
-            MYSQL_USER: '${DOCKER_DATABASE_USERNAME}'
-            MYSQL_DATABASE: '${DOCKER_DATABASE_NAME}'
-            MYSQL_PASSWORD: '${DOCKER_DATABASE_PASSWORD}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: "%"
-            MYSQL_ROOT_PASSWORD: '${DOCKER_DATABASE_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
             - ./storage/database:/var/lib/mysql

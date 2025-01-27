@@ -8,7 +8,7 @@ name: 🔥 Test Workflow
 jobs:
   laravel-test:
     name: 🔎 Laravel Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: testing
     services:
       mariadb:
@@ -43,7 +43,7 @@ jobs:
   create-pr:
     needs: [laravel-test]
     name: 🔄 Create Pull Request
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: testing
     steps:
       - name: 📥 Checkout code

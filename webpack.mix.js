@@ -19,4 +19,10 @@ mix.copy("resources/plugin", "public/plugin");
 
 if (mix.inProduction()) {
     mix.version();
+} else {
+    mix.webpackConfig({
+        stats: {
+            children: true,
+        },
+    });
 }

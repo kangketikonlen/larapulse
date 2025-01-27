@@ -6,16 +6,16 @@
     },
     "devDependencies": {
         "axios": "^1.7.9",
-        "laravel-echo": "^1.16.1",
+        "laravel-echo": "^1.18.0",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
-        "postcss": "^8.4.47",
+        "postcss": "^8.5.1",
         "pusher-js": "^8.4.0-rc2",
-        "sass": "^1.79.4",
-        "sass-loader": "^16.0.2"
+        "sass": "^1.83.4",
+        "sass-loader": "^16.0.4"
     },
     "dependencies": {
-        "dotenv": "^16.4.5",
-        "socket.io-client": "^4.8.0"
+        "dotenv": "^16.4.7",
+        "socket.io-client": "^4.8.1"
     }
 }

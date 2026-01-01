@@ -14,7 +14,7 @@ jobs:
     environment: testing
     steps:
       - name: 🐙 Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 📁 Make sure repository is latest
         run: git fetch --prune --unshallow
       - name: 🔖 Create tag
@@ -33,7 +33,7 @@ jobs:
       latest_version: ${{steps.push-image.outputs.version}}
     steps:
       - name: 🐙 Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 📁 Make sure repository is latest
         run: git fetch --prune --unshallow
       - name: 🐳 Build image

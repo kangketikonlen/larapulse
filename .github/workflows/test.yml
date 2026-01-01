@@ -21,7 +21,7 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: 🐙 Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 📁 Make sure repository is latest
         run: git fetch --prune --unshallow
       - name: 📑 Set up php
@@ -47,7 +47,7 @@ jobs:
     environment: testing
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 🚀 Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
       - name: 🚀 Create PR
